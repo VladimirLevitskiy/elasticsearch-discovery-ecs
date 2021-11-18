@@ -21,8 +21,8 @@
 package com.github.timonwong.elasticsearch.discovery.ecs;
 
 import com.aliyuncs.IAcsClient;
-import org.elasticsearch.common.lease.Releasable;
-import org.elasticsearch.common.util.concurrent.AbstractRefCounted;
+import org.elasticsearch.core.Releasable;
+import org.elasticsearch.core.AbstractRefCounted;
 
 /**
  * Handles the shutdown of the wrapped {@link IAcsClient} using reference

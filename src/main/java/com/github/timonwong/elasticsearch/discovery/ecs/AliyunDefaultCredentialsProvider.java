@@ -21,7 +21,7 @@ package com.github.timonwong.elasticsearch.discovery.ecs;
 
 import com.aliyuncs.auth.*;
 import com.aliyuncs.exceptions.ClientException;
-import org.elasticsearch.common.SuppressForbidden;
+import org.elasticsearch.core.SuppressForbidden;
 
 import java.util.ArrayList;
 import java.util.List;

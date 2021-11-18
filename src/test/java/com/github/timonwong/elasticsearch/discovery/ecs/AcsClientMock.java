@@ -21,6 +21,8 @@ package com.github.timonwong.elasticsearch.discovery.ecs;
 
 import com.aliyuncs.*;
 import com.aliyuncs.auth.Credential;
+import com.aliyuncs.auth.SignatureVersion;
+import com.aliyuncs.auth.signers.SignatureAlgorithm;
 import com.aliyuncs.ecs.model.v20140526.DescribeInstancesRequest;
 import com.aliyuncs.ecs.model.v20140526.DescribeInstancesResponse;
 import com.aliyuncs.http.HttpResponse;
@@ -216,6 +218,26 @@ public class AcsClientMock implements IAcsClient {
 
     @Override
     public void shutdown() {
+    }
+
+    @Override
+    public SignatureVersion getSignatureVersion() {
+        return null;
+    }
+
+    @Override
+    public void setSignatureVersion(SignatureVersion signatureVersion) {
+
+    }
+
+    @Override
+    public SignatureAlgorithm getSignatureAlgorithm() {
+        return null;
+    }
+
+    @Override
+    public void setSignatureAlgorithm(SignatureAlgorithm signatureAlgorithm) {
+
     }
 
     static class InstanceTag extends DescribeInstancesResponse.Instance.Tag {

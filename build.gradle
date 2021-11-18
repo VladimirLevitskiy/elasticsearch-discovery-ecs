@@ -16,7 +16,7 @@
 buildscript {
 
     ext {
-        es_version = System.getProperty("es.version", "7.5.1")
+        es_version = System.getProperty("es.version", "7.15.2")
     }
 
     // This isn't applying from repositories.gradle so repeating it here
@@ -31,9 +31,8 @@ buildscript {
 }
 
 plugins {
-    id 'nebula.ospackage' version '5.3.0'
+    id 'nebula.ospackage' version '9.0.0'
     id 'java-library'
-    id 'checkstyle'
 }
 
 // Repository on root level is for dependencies that project code depends on. And this block must be placed after plugins{}
@@ -44,7 +43,7 @@ repositories {
 ext {
     projectSubstitutions = [:]
 
-    pluginVersion = '7.5.1'
+    pluginVersion = es_version
     isSnapshot = "true" == System.getProperty("build.snapshot", "true")
 
     licenseFile = rootProject.file('LICENSE.TXT')
@@ -86,65 +85,16 @@ esplugin {
 
 check.dependsOn jacocoTestReport
 
-// TODO: fix code style in main and test source code
-checkstyle {
-    configDir file("${rootDir}/config/checkstyle")
-}
-
-checkstyleMain.ignoreFailures = false
-checkstyleTest.ignoreFailures = true
-
-dependencyLicenses.enabled = true
-forbiddenApisMain.enabled = true
-forbiddenApisTest.enabled = true
-testingConventions.enabled = false
-
-integTest.enabled = false
-
-thirdPartyAudit {
-    enabled = true
-
-    ignoreMissingClasses(
-        // classes are missing
-        'org.apache.avalon.framework.logger.Logger',
-        'org.apache.commons.codec.binary.Base64',
-        'org.apache.log4j.Category',
-        'org.apache.log4j.Level',
-        'org.apache.log4j.Logger',
-        'org.apache.log4j.Priority',
-        'org.apache.log.Logger',
-        'org.apache.log.Hierarchy',
-        'javax.servlet.ServletContextEvent',
-        'javax.servlet.ServletContextListener',
-
-        'javax.activation.DataHandler',
-    )
-}
-
-versions << [
-    "aliyun_sdk_core": "4.4.9",
-    "aliyun_sdk_ecs": "4.17.8",
-    "gson": "2.8.6",
-    "commonsio": "2.6",
-]
-
 dependencies {
-    compile group: 'com.aliyun', name: 'aliyun-java-sdk-core', version: versions.aliyun_sdk_core
-    compile group: 'com.aliyun', name: 'aliyun-java-sdk-ecs', version: versions.aliyun_sdk_ecs
-
-    compileOnly "org.slf4j:slf4j-api:${versions.slf4j}"
-    compile "com.google.code.gson:gson:${versions.gson}"
-    compile "org.apache.httpcomponents:httpclient:${versions.httpclient}"
-    compile "org.apache.httpcomponents:httpcore:${versions.httpcore}"
-    compile "commons-logging:commons-logging:${versions.commonslogging}"
-    compile "commons-io:commons-io:${versions.commonsio}"
-
-    compile "org.ini4j:ini4j:0.5.4"
-    compile "javax.xml.bind:jaxb-api:2.3.1"
-}
-
-dependencyLicenses {
-    mapping from: /aliyun-java-sdk-.*/, to: 'aliyun-java-sdk'
+    implementation "com.google.code.gson:gson:2.8.7"
+    implementation "org.slf4j:slf4j-api:1.7.30"
+    implementation(group: 'com.aliyun', name: 'aliyun-java-sdk-core', version: '4.5.30')
+    implementation(group: 'com.aliyun', name: 'aliyun-java-sdk-ecs', version: '4.24.11')
+    implementation ("org.apache.httpcomponents:httpclient:4.5.10")
+    implementation ("org.apache.httpcomponents:httpcore:4.4.12")
+    implementation ("commons-io:commons-io:2.6")
+    implementation ("org.ini4j:ini4j:0.5.4")
+    implementation ("javax.xml.bind:jaxb-api:2.3.1")
 }
 
 apply plugin: 'nebula.ospackage'
@@ -166,7 +116,7 @@ afterEvaluate {
         fileMode 0644
         dirMode 0755
 
-        requires('elasticsearch-oss', versions.elasticsearch, EQUAL)
+        requires('elasticsearch-oss', es_version, EQUAL)
         packager = 'Timon Wong'
         // vendor = 'XXX'
         os = 'LINUX'
