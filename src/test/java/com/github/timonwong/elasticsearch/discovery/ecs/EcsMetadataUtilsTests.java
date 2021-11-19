@@ -20,7 +20,7 @@
 package com.github.timonwong.elasticsearch.discovery.ecs;
 
 import com.sun.net.httpserver.HttpServer;
-import org.elasticsearch.common.SuppressForbidden;
+import org.elasticsearch.core.SuppressForbidden;
 import org.elasticsearch.mocksocket.MockHttpServer;
 import org.elasticsearch.rest.RestStatus;
 import org.elasticsearch.test.ESTestCase;

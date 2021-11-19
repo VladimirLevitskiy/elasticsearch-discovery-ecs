@@ -20,7 +20,7 @@
 package com.github.timonwong.elasticsearch.discovery.ecs;
 
 import org.apache.commons.io.IOUtils;
-import org.elasticsearch.common.SuppressForbidden;
+import org.elasticsearch.core.SuppressForbidden;
 
 import java.io.IOException;
 import java.io.InputStream;

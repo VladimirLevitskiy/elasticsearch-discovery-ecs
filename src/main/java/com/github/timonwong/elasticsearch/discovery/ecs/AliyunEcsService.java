@@ -21,7 +21,7 @@ package com.github.timonwong.elasticsearch.discovery.ecs;
 
 import org.elasticsearch.common.settings.Setting;
 import org.elasticsearch.common.settings.Setting.Property;
-import org.elasticsearch.common.unit.TimeValue;
+import org.elasticsearch.core.TimeValue;
 
 import java.io.Closeable;
 import java.util.ArrayList;

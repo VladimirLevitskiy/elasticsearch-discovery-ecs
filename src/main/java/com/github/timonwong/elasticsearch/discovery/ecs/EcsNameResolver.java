@@ -21,7 +21,7 @@ package com.github.timonwong.elasticsearch.discovery.ecs;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.elasticsearch.common.SuppressForbidden;
+import org.elasticsearch.core.SuppressForbidden;
 import org.elasticsearch.common.network.NetworkService.CustomNameResolver;
 
 import java.io.IOException;

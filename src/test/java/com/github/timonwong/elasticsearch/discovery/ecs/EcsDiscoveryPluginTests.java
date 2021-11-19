@@ -21,7 +21,7 @@ package com.github.timonwong.elasticsearch.discovery.ecs;
 
 import com.aliyuncs.auth.Credential;
 import com.sun.net.httpserver.HttpServer;
-import org.elasticsearch.common.SuppressForbidden;
+import org.elasticsearch.core.SuppressForbidden;
 import org.elasticsearch.common.settings.MockSecureSettings;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.mocksocket.MockHttpServer;
